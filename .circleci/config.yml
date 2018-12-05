@@ -5,7 +5,7 @@ defaults: &defaults
   docker:
     - image: circleci/node:8.9.1
     - image: circleci/mongo:3.4
-    - image: redis:4.0.1
+    - image: redis:alpine
 
 jobs:
   install:
@@ -41,11 +41,11 @@ jobs:
           at: ~/project
       - run: npm run test:cover
       - run:
-         name: report coverage stats for non-PRs
-         command: |
-           if [[ -z $CI_PULL_REQUEST ]]; then
-             cat ./coverage/lcov.info | ./node_modules/.bin/codecov
-           fi
+          name: report coverage stats for non-PRs
+          command: |
+            if [[ -z $CI_PULL_REQUEST ]]; then
+              cat ./coverage/lcov.info | ./node_modules/.bin/codecov
+            fi
 
 workflows:
   version: 2

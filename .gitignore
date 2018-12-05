@@ -28,3 +28,7 @@ dist
 config
 views/config.json
 public/upload
+.vscode
+yarn.lock
+yarn-debug.log*
+yarn-error.log*
